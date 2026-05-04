@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>천일문 독해 Master-E-162 | 에듀케레 영수학원</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #1a2744;
+  --navy-light: #2a3a5c;
+  --gold: #c8a84b;
+  --gold-light: #e0c876;
+  --cream: #faf7f0;
+  --bg: #f5f3ed;
+  --text: #2c2c2c;
+  --text-light: #555;
+  --border: #d4cfc0;
+  --green: #2d6a4f;
+  --green-bg: #d8f3dc;
+  --red: #c1121f;
+  --red-bg: #ffd6d6;
+}
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.container { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 280px;
+  background: var(--navy);
+  color: var(--cream);
+  padding: 28px 22px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 3px solid var(--gold);
+}
+.brand {
+  border-bottom: 1px solid rgba(200,168,75,0.3);
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.brand-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.brand-sub { font-size: 13px; color: var(--cream); margin-top: 4px; font-weight: 300; }
+.brand-tel { font-size: 11px; color: rgba(250,247,240,0.7); margin-top: 6px; }
+.sidebar-label { font-size: 11px; color: var(--gold); letter-spacing: 2px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; }
+.passage-list { list-style: none; }
+.passage-list li {
+  padding: 12px 14px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+.passage-list li:hover { background: rgba(200,168,75,0.1); }
+.passage-list li.active {
+  background: rgba(200,168,75,0.2);
+  border-left-color: var(--gold);
+  color: var(--gold-light);
+  font-weight: 500;
+}
+.psg-num { font-family: 'EB Garamond', serif; font-size: 11px; color: var(--gold); display: block; letter-spacing: 1px; }
+
+.main { flex: 1; padding: 0; overflow-x: hidden; }
+.header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: var(--cream);
+  padding: 32px 48px;
+  border-bottom: 4px solid var(--gold);
+}
+.header-series { font-size: 12px; letter-spacing: 4px; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+.header-title { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; letter-spacing: 0.5px; }
+.header-sub { font-size: 14px; margin-top: 6px; color: rgba(250,247,240,0.85); font-weight: 300; }
+
+.tabs {
+  display: flex;
+  background: white;
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  overflow-x: auto;
+}
+.tab {
+  padding: 16px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-light);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: inherit;
+}
+.tab:hover { color: var(--navy); background: var(--cream); }
+.tab.active {
+  color: var(--navy);
+  border-bottom-color: var(--gold);
+  font-weight: 700;
+  background: var(--cream);
+}
+.tab-num { font-family: 'EB Garamond', serif; color: var(--gold); margin-right: 6px; font-weight: 700; }
+
+.content { padding: 36px 48px; max-width: 1100px; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: var(--navy);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title .icon {
+  background: var(--gold);
+  color: var(--navy);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.full-text-box {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--navy);
+  padding: 28px 32px;
+  border-radius: 4px;
+  font-family: 'EB Garamond', serif;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #1a1a1a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.full-text-box .sent-num { color: var(--gold); font-weight: 700; margin-right: 4px; }
+
+.sentence-block { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px dashed var(--border); }
+.sentence-block:last-child { border-bottom: none; }
+.sent-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.sent-num-circle {
+  width: 28px;
+  height: 28px;
+  background: var(--navy);
+  color: var(--gold);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.sent-label { font-size: 12px; color: var(--navy); font-weight: 700; letter-spacing: 1px; }
+.eng-box {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  padding: 16px 22px;
+  border-radius: 3px;
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+.chunk-box {
+  background: var(--cream);
+  border-left: 3px solid var(--navy-light);
+  padding: 14px 20px;
+  margin-bottom: 12px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+.chunk-eng { font-family: 'EB Garamond', serif; color: var(--navy); margin-bottom: 6px; line-height: 1.6; }
+.chunk-kor { color: var(--text); font-size: 14px; line-height: 1.6; }
+.chunk-kor strong { color: var(--navy); font-weight: 600; }
+.gram-list {
+  background: #fffbef;
+  border: 1px solid #f0e3b8;
+  padding: 14px 20px;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+.gram-item { margin-bottom: 10px; font-size: 14px; line-height: 1.65; }
+.gram-item:last-child { margin-bottom: 0; }
+.gram-item .diamond { color: #b8860b; font-weight: 700; }
+.gram-item .triangle { color: var(--navy); margin-right: 4px; }
+.gram-item .star { color: var(--red); margin-right: 4px; }
+.gram-item .label-name { color: #8b6914; font-weight: 700; font-family: 'EB Garamond', serif; }
+.gram-item .ex { display: block; margin-top: 4px; margin-left: 12px; color: var(--text); }
+.gram-item .pt { display: block; margin-top: 4px; margin-left: 12px; color: var(--text-light); font-size: 13px; }
+
+.word-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.word-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 80px 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 3px solid #2d6a4f;
+  border-radius: 3px;
+  font-size: 14px;
+  align-items: center;
+}
+.word-row:nth-child(even) { background: #f9faf7; }
+.word-en { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 16px; color: var(--navy); }
+.word-kor { color: var(--text); }
+.word-pos { font-style: italic; color: #2d6a4f; font-size: 13px; font-family: 'EB Garamond', serif; }
+.word-deriv { font-size: 13px; color: var(--text-light); font-family: 'EB Garamond', serif; }
+
+.translation-box {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--gold);
+  padding: 28px 32px;
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 1.95;
+  color: #1a1a1a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.theme-grid { display: grid; gap: 18px; }
+.theme-card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 22px 26px;
+  border-radius: 4px;
+  border-top: 4px solid var(--navy);
+}
+.theme-card.gold { border-top-color: var(--gold); }
+.theme-card.dark { border-top-color: var(--navy-light); }
+.theme-label { font-size: 12px; color: var(--gold); letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
+.theme-content { font-size: 15px; line-height: 1.8; color: var(--text); }
+.flow-list { list-style: none; counter-reset: flow; }
+.flow-list li {
+  counter-increment: flow;
+  padding: 10px 0 10px 44px;
+  position: relative;
+  border-bottom: 1px dotted var(--border);
+}
+.flow-list li:last-child { border-bottom: none; }
+.flow-list li::before {
+  content: counter(flow);
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  background: var(--navy);
+  color: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+.flow-stage { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 2px; }
+
+.bg-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 5px solid #2d6a4f;
+  padding: 24px 28px;
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+.bg-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.bg-title::before { content: '◆'; color: var(--gold); }
+.bg-body { font-size: 14px; line-height: 1.85; color: var(--text); }
+
+.quiz-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+.quiz-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.quiz-num {
+  background: var(--navy);
+  color: var(--gold);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'EB Garamond', serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.quiz-type {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: var(--navy);
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+.quiz-title { font-size: 15px; font-weight: 500; color: var(--navy); }
+.quiz-question {
+  font-size: 14px;
+  line-height: 1.85;
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  background: var(--cream);
+  border-radius: 3px;
+  border-left: 3px solid var(--gold);
+}
+.quiz-question .eng { font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.75; }
+.choices { list-style: none; }
+.choice {
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background: #fafafa;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.choice:hover { background: var(--cream); border-color: var(--gold); }
+.choice .num { font-family: 'EB Garamond', serif; font-weight: 700; color: var(--navy); flex-shrink: 0; }
+.choice .txt { flex: 1; line-height: 1.6; }
+.choice.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); font-weight: 600; }
+.choice.correct::after { content: ' ✓'; margin-left: auto; color: var(--green); font-weight: 700; }
+.choice.wrong { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+.choice.wrong::after { content: ' ✗'; margin-left: auto; color: var(--red); font-weight: 700; }
+.explain {
+  display: none;
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: #f0f7f4;
+  border-left: 3px solid var(--green);
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #1a4731;
+}
+.explain.show { display: block; }
+.explain b { color: var(--green); }
+.reset-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: var(--navy);
+  color: var(--gold);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+}
+.reset-btn:hover { background: var(--navy-light); }
+
+.essay-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--gold);
+  border-radius: 4px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+.essay-cond {
+  font-size: 13px;
+  color: var(--text-light);
+  background: #fff8e1;
+  padding: 8px 14px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  border-left: 3px solid var(--gold);
+}
+.essay-textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  font-family: 'EB Garamond', 'Noto Sans KR', serif;
+  font-size: 15px;
+  line-height: 1.7;
+  resize: vertical;
+  background: var(--cream);
+}
+.essay-textarea:focus { outline: none; border-color: var(--gold); background: white; }
+.essay-toggle {
+  margin-top: 12px;
+  padding: 10px 18px;
+  background: var(--navy);
+  color: var(--gold);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+}
+.essay-toggle:hover { background: var(--navy-light); }
+.essay-answer {
+  display: none;
+  margin-top: 12px;
+  padding: 16px 20px;
+  background: #f0f7f4;
+  border: 1px solid #c8e6c9;
+  border-left: 4px solid var(--green);
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.essay-answer.show { display: block; }
+.essay-answer .label { font-size: 11px; color: var(--green); font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 8px; }
+.essay-answer .eng { font-family: 'EB Garamond', serif; color: #1a1a1a; margin-bottom: 6px; }
+.essay-answer .kor { color: var(--text); font-size: 13px; }
+
+.footer {
+  margin-top: 60px;
+  padding: 24px 48px;
+  background: var(--navy);
+  color: var(--cream);
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-top: 3px solid var(--gold);
+}
+.footer .gold { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; }
+
+@media (max-width: 768px) {
+  .container { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; }
+  .content { padding: 24px 20px; }
+  .header { padding: 24px 20px; }
+  .word-row { grid-template-columns: 1fr; gap: 4px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-title">EDUCARE</div>
+    <div class="brand-sub">에듀케레 영수학원</div>
+    <div class="brand-tel">055.363.8010 · 물금읍 양산</div>
+  </div>
+  <div class="sidebar-label">▸ 지문 목록</div>
+  <ul class="passage-list">
+    <li class="active" onclick="showPassage('p1', this)">
+      <span class="psg-num">Master-E-162</span>
+      Commercialized Wildlife Imagery
+    </li>
+  </ul>
+</aside>
+
+<main class="main">
+<div class="header">
+  <div class="header-series">CHEONILMUN MASTER · E-162</div>
+  <h1 class="header-title">Commercialized Wildlife Imagery &amp; Eco-Political Awareness</h1>
+  <div class="header-sub">천일문 독해 Master E-162 | 상업화된 야생동물 이미지와 생태정치적 인식</div>
+</div>
+
+<nav class="tabs">
+  <button class="tab active" onclick="showTab('t1', this)"><span class="tab-num">①</span>전문</button>
+  <button class="tab" onclick="showTab('t2', this)"><span class="tab-num">②</span>문장분석</button>
+  <button class="tab" onclick="showTab('t3', this)"><span class="tab-num">③</span>핵심단어</button>
+  <button class="tab" onclick="showTab('t4', this)"><span class="tab-num">④</span>전문해석</button>
+  <button class="tab" onclick="showTab('t5', this)"><span class="tab-num">⑤</span>주제·요지</button>
+  <button class="tab" onclick="showTab('t6', this)"><span class="tab-num">⑥</span>배경지식</button>
+  <button class="tab" onclick="showTab('t7', this)"><span class="tab-num">⑦</span>변형문제</button>
+</nav>
+
+<div class="content">
+<div id="p1">
+
+<!-- ① 전문 -->
+<div class="panel active" id="t1">
+  <h2 class="section-title"><span class="icon">①</span>전문 (Original Text)</h2>
+  <div class="full-text-box">
+    <span class="sent-num">①</span> Commercialized images of attractive wildlife use the appealing physical traits of animals to elicit specific human emotional responses, so as to trigger charitable donations to conservation organizations or to increase safari vacation bookings.
+    <span class="sent-num">②</span> Such imagery fails to encourage critical thinking regarding power imbalances, exclusions, and inequalities that shape the way humans and animals are connected.
+    <span class="sent-num">③</span> Moreover, commercialized virtual spaces where humans and animals interact cause us to overlook the connections and shared ecologies between all living beings.
+    <span class="sent-num">④</span> In response to the constraint on our eco-political imagination of this learned invisibility, some have begun to question how visual representations shape what we notice and what we overlook.
+    <span class="sent-num">⑤</span> This perspective aims to make everyday interactions between species more visible and pull us out of our deep ignorance.
+    <span class="sent-num">⑥</span> A documentary that presents rescued wild animals as heartwarming content while also examining ecological and political contexts—such as habitat loss or illegal trade—illustrates how a thorough perspective can be presented.
+    <span class="sent-num">⑦</span> By linking emotional appeal to these broader issues, it invites viewers to consider the overall causes of environmental harm rather than focusing solely on feel-good rescue stories.
+  </div>
+</div>
+
+<!-- ② 문장분석 -->
+<div class="panel" id="t2">
+  <h2 class="section-title"><span class="icon">②</span>문장분석 (Sentence Analysis)</h2>
+
+  <!-- S1 -->
+  <div class="sentence-block">
+    <div class="sent-header"><span class="sent-num-circle">①</span><span class="sent-label">SENTENCE 1</span></div>
+    <div class="eng-box">Commercialized images of attractive wildlife use the appealing physical traits of animals to elicit specific human emotional responses, so as to trigger charitable donations to conservation organizations or to increase safari vacation bookings.</div>
+    <div class="chunk-box">
+      <div class="chunk-eng">Commercialized images of attractive wildlife / use the appealing physical traits of animals / to elicit specific human emotional responses, / so as to trigger charitable donations / to conservation organizations / or to increase safari vacation bookings.</div>
+      <div class="chunk-kor"><strong>매력적인 야생동물의 상업화된 이미지는</strong> / 동물의 매력적인 신체적 특징을 이용한다 / 특정한 인간의 감정적 반응을 이끌어내기 위해 / 자선 기부를 유발하기 위해 / 환경 보전 단체에 / 또는 사파리 휴가 예약을 늘리기 위해.</div>
+    </div>
+    <div class="gram-list">
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">to부정사 부사적 용법 (목적)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>use ... to elicit specific human emotional responses</em></span>
+        <span class="pt"><span class="star">★</span> 'to elicit'은 '~하기 위해'(목적)의 to부정사 부사적 용법. 'in order to elicit'으로 환언 가능.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">so as to V (~하기 위해)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>so as to trigger charitable donations ... or to increase safari bookings</em></span>
+        <span class="pt"><span class="star">★</span> 'so as to V' = 'in order to V' = 'to V'. 등위접속사 'or'로 두 to부정사구(to trigger ~ / to increase ~)가 병렬 연결.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">과거분사 형용사 (Commercialized)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>Commercialized images</em> — '상업화된 이미지'</span>
+        <span class="pt"><span class="star">★</span> 'Commercialized'는 과거분사가 명사를 수식하는 형용사. 수동의 의미('상업화되어진'). 어법 변형 시 'Commercializing'(능동)으로 바꿔 오답 만드는 출제 단골.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="sentence-block">
+    <div class="sent-header"><span class="sent-num-circle">②</span><span class="sent-label">SENTENCE 2</span></div>
+    <div class="eng-box">Such imagery fails to encourage critical thinking regarding power imbalances, exclusions, and inequalities that shape the way humans and animals are connected.</div>
+    <div class="chunk-box">
+      <div class="chunk-eng">Such imagery / fails to encourage critical thinking / regarding power imbalances, exclusions, and inequalities / that shape the way / humans and animals are connected.</div>
+      <div class="chunk-kor">그러한 이미지는 / 비판적 사고를 장려하는 데 실패한다 / 권력 불균형, 배제, 그리고 불평등에 관한 / (그것들이) 방식을 형성하는 / 인간과 동물이 연결되는.</div>
+    </div>
+    <div class="gram-list">
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">fail to V (~하지 못하다)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>fails to encourage critical thinking</em></span>
+        <span class="pt"><span class="star">★</span> 'fail + to부정사' 형태로 '~하는 데 실패하다' = '~하지 못하다'. 동명사(failing) 목적어 불가, 반드시 to부정사. 어법 출제.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">전치사 regarding (~에 관하여)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>critical thinking regarding power imbalances</em></span>
+        <span class="pt"><span class="star">★</span> 'regarding = about, concerning, with regard to' 동의어. 격식 있는 글에서 자주 사용.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">주격 관계대명사 that</span>
+        <span class="ex"><span class="triangle">▶</span> <em>inequalities that shape the way</em></span>
+        <span class="pt"><span class="star">★</span> 선행사가 'power imbalances, exclusions, and inequalities'(복수) → 관계대명사 뒤 동사 'shape'(복수형, 원형). 'shapes'로 바꾸면 어법 오답.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">the way (in which) S V — 관계부사절</span>
+        <span class="ex"><span class="triangle">▶</span> <em>the way humans and animals are connected</em></span>
+        <span class="pt"><span class="star">★</span> 'the way' 뒤에는 관계부사 'how'를 함께 쓸 수 없음(둘 중 하나만). 'the way (that/in which) S V' 구조. 수동태 'are connected'에 주목.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="sentence-block">
+    <div class="sent-header"><span class="sent-num-circle">③</span><span class="sent-label">SENTENCE 3</span></div>
+    <div class="eng-box">Moreover, commercialized virtual spaces where humans and animals interact cause us to overlook the connections and shared ecologies between all living beings.</div>
+    <div class="chunk-box">
+      <div class="chunk-eng">Moreover, / commercialized virtual spaces / where humans and animals interact / cause us / to overlook the connections and shared ecologies / between all living beings.</div>
+      <div class="chunk-kor">게다가, / 상업화된 가상 공간들은 / (그곳에서) 인간과 동물이 상호작용하는, / 우리로 하여금 ~하게 한다 / 연결과 공유된 생태를 간과하게 / 모든 생명체 사이의.</div>
+    </div>
+    <div class="gram-list">
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">관계부사 where (장소 선행사)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>virtual spaces where humans and animals interact</em></span>
+        <span class="pt"><span class="star">★</span> 선행사 'virtual spaces'(장소)를 수식하는 관계부사 where. 'in which'로 환언 가능. 'which interact'(목적격) 형태로 변형해 어법 오답 출제.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">cause + 목적어 + to부정사 (5형식)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>cause us to overlook the connections</em></span>
+        <span class="pt"><span class="star">★</span> 'cause + O + to V' = 'O가 V하게 하다(원인을 제공)'. 사역동사(make/have/let)와 달리 cause는 to부정사를 취함. 'cause us overlook'은 어법 오답.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">긴 주어 + 단수/복수 수일치</span>
+        <span class="ex"><span class="triangle">▶</span> <em>commercialized virtual spaces ... cause</em></span>
+        <span class="pt"><span class="star">★</span> 핵심 주어 'spaces'(복수)와 동사 'cause'(복수형) 일치. 관계부사절(where ~)에 끌려가지 않도록 주의.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">과거분사 + 명사 (shared ecologies)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>shared ecologies</em> — '공유된 생태'</span>
+        <span class="pt"><span class="star">★</span> 'shared'는 과거분사가 명사를 수식하는 형용사. '공유되어진'(수동) 의미. sharing(능동)이 아니라 shared(수동)인 이유 출제.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="sentence-block">
+    <div class="sent-header"><span class="sent-num-circle">④</span><span class="sent-label">SENTENCE 4</span></div>
+    <div class="eng-box">In response to the constraint on our eco-political imagination of this learned invisibility, some have begun to question how visual representations shape what we notice and what we overlook.</div>
+    <div class="chunk-box">
+      <div class="chunk-eng">In response to / the constraint on our eco-political imagination / of this learned invisibility, / some have begun / to question / how visual representations shape / what we notice / and what we overlook.</div>
+      <div class="chunk-kor">~에 대응하여 / 우리의 생태정치적 상상력에 대한 제약 / 이러한 학습된 비가시성으로 인한 / (제약), / 일부는 시작했다 / 의문을 제기하기를 / 시각적 재현이 어떻게 형성하는지를 / 우리가 인식하는 것과 / 우리가 간과하는 것을.</div>
+    </div>
+    <div class="gram-list">
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">현재완료 (have begun)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>some have begun to question</em></span>
+        <span class="pt"><span class="star">★</span> 과거 시점에 시작되어 현재까지 이어지는 동작/상태. 'some'(일부 사람들)이 주어이므로 복수 'have'(has 아님).</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">간접의문문 (how + S + V)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>how visual representations shape what we notice</em></span>
+        <span class="pt"><span class="star">★</span> 'question'의 목적어로 쓰인 간접의문문. 평서문 어순(S+V) 유지. 'how do visual representations shape'(직접의문문)와의 어순 차이 출제.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">관계대명사 what (선행사 포함)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>what we notice and what we overlook</em></span>
+        <span class="pt"><span class="star">★</span> 'what = the thing(s) which/that'. 선행사를 포함한 관계대명사. 명사절로 'shape'의 목적어 역할. 두 개의 what절이 'and'로 병렬.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">In response to (~에 대응하여)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>In response to the constraint</em></span>
+        <span class="pt"><span class="star">★</span> 'in response to + 명사'는 전치사구로 '~에 대한 반응으로'. 'respond to' 동사구의 명사화 표현.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5 -->
+  <div class="sentence-block">
+    <div class="sent-header"><span class="sent-num-circle">⑤</span><span class="sent-label">SENTENCE 5</span></div>
+    <div class="eng-box">This perspective aims to make everyday interactions between species more visible and pull us out of our deep ignorance.</div>
+    <div class="chunk-box">
+      <div class="chunk-eng">This perspective / aims / to make everyday interactions between species more visible / and (to) pull us out of our deep ignorance.</div>
+      <div class="chunk-kor">이러한 관점은 / 목표로 한다 / 종 간의 일상적 상호작용을 더 가시적으로 만드는 것을 / 그리고 우리를 깊은 무지에서 끌어내는 것을.</div>
+    </div>
+    <div class="gram-list">
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">aim to V (~을 목표로 하다)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>aims to make ... and (to) pull</em></span>
+        <span class="pt"><span class="star">★</span> 'aim'은 to부정사 목적어를 취함. 두 개의 to부정사구(to make ~ / (to) pull ~)가 병렬 연결, 두 번째 to는 흔히 생략. 병렬 일치 출제.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">make + 목적어 + 형용사 (5형식)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>make everyday interactions ... more visible</em></span>
+        <span class="pt"><span class="star">★</span> 'make + O + 형용사'는 'O를 ~하게 만들다'. 형용사 자리에 부사 'visibly'가 오면 어법 오답. 비교급 'more visible'(2음절 이상 형용사)에 주목.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">pull A out of B (A를 B에서 끌어내다)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>pull us out of our deep ignorance</em></span>
+        <span class="pt"><span class="star">★</span> 'pull out of'는 '끌어내다, 빠져나오게 하다'. 전치사 'out of'(~에서 밖으로) 고정 어법. 비유적 의미로 '무지에서 깨어나게 하다'.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6 -->
+  <div class="sentence-block">
+    <div class="sent-header"><span class="sent-num-circle">⑥</span><span class="sent-label">SENTENCE 6</span></div>
+    <div class="eng-box">A documentary that presents rescued wild animals as heartwarming content while also examining ecological and political contexts—such as habitat loss or illegal trade—illustrates how a thorough perspective can be presented.</div>
+    <div class="chunk-box">
+      <div class="chunk-eng">A documentary / that presents rescued wild animals as heartwarming content / while also examining ecological and political contexts / —such as habitat loss or illegal trade— / illustrates / how a thorough perspective can be presented.</div>
+      <div class="chunk-kor">한 다큐멘터리는 / (그것은) 구조된 야생동물을 마음을 따뜻하게 하는 콘텐츠로 제시한다 / 동시에 생태적·정치적 맥락도 검토하면서 / —서식지 손실이나 불법 거래와 같은— / 보여 준다 / 어떻게 철저한 관점이 제시될 수 있는지를.</div>
+    </div>
+    <div class="gram-list">
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">주격 관계대명사 that + 긴 수식절</span>
+        <span class="ex"><span class="triangle">▶</span> <em>A documentary that presents ... while also examining ... illustrates</em></span>
+        <span class="pt"><span class="star">★</span> 핵심 주어는 'A documentary'(단수), 동사는 'illustrates'(단수). 관계대명사절 'that presents ~ contexts'가 길게 삽입되어 주어-동사 떨어진 수일치 함정.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">present A as B (A를 B로 제시하다)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>presents rescued wild animals as heartwarming content</em></span>
+        <span class="pt"><span class="star">★</span> 'present A as B' 구문. 전치사 'as' 자리에 'for/like'가 오면 어법 오답.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">접속사 while + 분사구문 (동시 동작)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>while also examining ecological and political contexts</em></span>
+        <span class="pt"><span class="star">★</span> 'while + 분사' 구조에서 'while it is also examining'의 'it is' 생략. 주절 주어와 분사 주어가 일치(documentary). 능동의 의미이므로 examining(현재분사).</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">간접의문문 + 수동태 (how ~ can be presented)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>how a thorough perspective can be presented</em></span>
+        <span class="pt"><span class="star">★</span> 'illustrate'의 목적어인 간접의문문. 'can be presented'(조동사 + 수동태). 'can be present'(형용사 present)와 혼동 주의.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7 -->
+  <div class="sentence-block">
+    <div class="sent-header"><span class="sent-num-circle">⑦</span><span class="sent-label">SENTENCE 7</span></div>
+    <div class="eng-box">By linking emotional appeal to these broader issues, it invites viewers to consider the overall causes of environmental harm rather than focusing solely on feel-good rescue stories.</div>
+    <div class="chunk-box">
+      <div class="chunk-eng">By linking emotional appeal to these broader issues, / it invites viewers / to consider the overall causes of environmental harm / rather than focusing solely on feel-good rescue stories.</div>
+      <div class="chunk-kor">감정적 호소를 이러한 더 광범위한 문제와 연결함으로써, / 그것은 시청자들에게 권유한다 / 환경 피해의 전반적 원인들을 고려하도록 / 단순히 기분 좋은 구조 이야기에만 초점을 맞추기보다는.</div>
+    </div>
+    <div class="gram-list">
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">By + 동명사 (~함으로써, 수단)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>By linking emotional appeal to these broader issues</em></span>
+        <span class="pt"><span class="star">★</span> 'By + V-ing'는 '~함으로써'(수단·방법). 전치사 By 뒤에는 반드시 동명사. 'By link'(원형) 어법 오답 출제.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">link A to B (A를 B에 연결하다)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>linking emotional appeal to these broader issues</em></span>
+        <span class="pt"><span class="star">★</span> 'link A to B' 고정 어법. 'link A with B'도 가능하나 to가 더 일반적. 다른 전치사(of, for) 사용 시 어법 오답.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">invite + 목적어 + to부정사 (5형식)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>invites viewers to consider</em></span>
+        <span class="pt"><span class="star">★</span> 'invite + O + to V'는 'O가 V하도록 권유하다'. to부정사 자리에 동명사(considering) 오면 어법 오답.</span>
+      </div>
+      <div class="gram-item"><span class="diamond">◆</span> <span class="label-name">rather than + V-ing (병렬, 비교)</span>
+        <span class="ex"><span class="triangle">▶</span> <em>to consider the overall causes ... rather than focusing solely on</em></span>
+        <span class="pt"><span class="star">★</span> 'rather than'은 비교 표현으로 양쪽이 동일한 형태(병렬)여야 함. 여기서는 to부정사 'to consider'와 동명사 'focusing'이 병렬되는 것이 의미상 자연스러움. (rather than 뒤에는 동명사·to부정사 모두 가능, 병렬 우선)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ③ 핵심단어 -->
+<div class="panel" id="t3">
+  <h2 class="section-title"><span class="icon">③</span>핵심단어 및 표현 (Key Vocabulary)</h2>
+  <div class="word-grid">
+    <div class="word-row">
+      <div class="word-en">commercialized</div>
+      <div class="word-kor">상업화된</div>
+      <div class="word-pos">adj.</div>
+      <div class="word-deriv">commerce (n.), commercialize (v.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">trait</div>
+      <div class="word-kor">특징, 특성</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">—</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">elicit</div>
+      <div class="word-kor">이끌어내다, 유도하다</div>
+      <div class="word-pos">v.</div>
+      <div class="word-deriv">elicitation (n.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">trigger</div>
+      <div class="word-kor">유발하다, 촉발하다</div>
+      <div class="word-pos">v.</div>
+      <div class="word-deriv">trigger (n. 방아쇠)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">charitable</div>
+      <div class="word-kor">자선의, 자비로운</div>
+      <div class="word-pos">adj.</div>
+      <div class="word-deriv">charity (n.), charitably (adv.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">conservation</div>
+      <div class="word-kor">보존, 보호</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">conserve (v.), conservative (adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">imagery</div>
+      <div class="word-kor">이미지, 심상</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">image (n.), imagine (v.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">imbalance</div>
+      <div class="word-kor">불균형</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">balance (n./v.), unbalanced (adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">exclusion</div>
+      <div class="word-kor">배제, 제외</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">exclude (v.), exclusive (adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">inequality</div>
+      <div class="word-kor">불평등</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">equal (adj.), equality (n.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">interact</div>
+      <div class="word-kor">상호작용하다</div>
+      <div class="word-pos">v.</div>
+      <div class="word-deriv">interaction (n.), interactive (adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">overlook</div>
+      <div class="word-kor">간과하다, 못 보고 넘기다</div>
+      <div class="word-pos">v.</div>
+      <div class="word-deriv">—</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">ecology</div>
+      <div class="word-kor">생태(계)</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">ecological (adj.), ecologist (n.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">constraint</div>
+      <div class="word-kor">제약, 제한</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">constrain (v.), constrained (adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">eco-political</div>
+      <div class="word-kor">생태정치적인</div>
+      <div class="word-pos">adj.</div>
+      <div class="word-deriv">ecology (n.), political (adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">invisibility</div>
+      <div class="word-kor">비가시성, 보이지 않음</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">invisible (adj.), visible (반의어 adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">representation</div>
+      <div class="word-kor">재현, 표현</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">represent (v.), representative (n./adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">perspective</div>
+      <div class="word-kor">관점, 시각</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">perspectival (adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">ignorance</div>
+      <div class="word-kor">무지, 무식</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">ignorant (adj.), ignore (v.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">heartwarming</div>
+      <div class="word-kor">마음을 따뜻하게 하는</div>
+      <div class="word-pos">adj.</div>
+      <div class="word-deriv">heart (n.), warm (adj./v.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">habitat</div>
+      <div class="word-kor">서식지</div>
+      <div class="word-pos">n.</div>
+      <div class="word-deriv">inhabit (v.), inhabitant (n.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">illustrate</div>
+      <div class="word-kor">예시하다, 보여 주다</div>
+      <div class="word-pos">v.</div>
+      <div class="word-deriv">illustration (n.), illustrative (adj.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">thorough</div>
+      <div class="word-kor">철저한, 빈틈없는</div>
+      <div class="word-pos">adj.</div>
+      <div class="word-deriv">thoroughly (adv.)</div>
+    </div>
+    <div class="word-row">
+      <div class="word-en">solely</div>
+      <div class="word-kor">오직, 단지</div>
+      <div class="word-pos">adv.</div>
+      <div class="word-deriv">sole (adj.)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ④ 전문해석 -->
+<div class="panel" id="t4">
+  <h2 class="section-title"><span class="icon">④</span>전문해석 (Full Translation)</h2>
+  <div class="translation-box">
+    매력적인 야생동물의 상업화된 이미지는 동물의 매력적인 신체적 특징을 활용하여 특정한 인간의 감정적 반응을 이끌어내는데, 이는 환경 보전 단체에 대한 자선 기부를 유도하거나 사파리 휴가 예약을 늘리기 위한 것이다. 이러한 이미지는 인간과 동물이 연결되는 방식을 형성하는 권력 불균형, 배제, 그리고 불평등에 관한 비판적 사고를 끌어내지 못한다. 더욱이, 인간과 동물이 상호작용하는 상업화된 가상 공간은 우리로 하여금 모든 생명체 사이의 연결과 공유된 생태를 간과하게 만든다. 이러한 학습된 비가시성이 우리의 생태정치적 상상력에 가하는 제약에 대응하여, 일부는 시각적 재현이 우리가 무엇을 인식하고 무엇을 간과하게 되는지를 어떻게 형성하는지에 대해 의문을 제기하기 시작했다. 이러한 관점은 종 사이의 일상적인 상호작용을 더 잘 보이게 만들고, 우리를 깊은 무지에서 끌어내는 것을 목표로 한다. 구조된 야생동물을 마음을 따뜻하게 하는 콘텐츠로 제시하면서도 동시에 서식지 손실이나 불법 거래와 같은 생태적·정치적 맥락도 함께 검토하는 다큐멘터리는 어떻게 철저한 관점이 제시될 수 있는지를 보여 준다. 감정적 호소를 이러한 더 광범위한 문제들과 연결함으로써, 그것은 시청자들로 하여금 단순히 기분 좋은 구조 이야기에만 초점을 맞추기보다는 환경 피해의 전반적인 원인들을 고려하도록 권한다.
+  </div>
+</div>
+
+<!-- ⑤ 주제·요지 -->
+<div class="panel" id="t5">
+  <h2 class="section-title"><span class="icon">⑤</span>주제 · 요지 · 구조</h2>
+  <div class="theme-grid">
+    <div class="theme-card">
+      <div class="theme-label">▸ 주제 (Topic)</div>
+      <div class="theme-content">상업화된 야생동물 이미지가 가지는 한계와, 비판적 시각 재현(visual representation)을 통해 생태정치적 인식을 회복하려는 새로운 관점.</div>
+    </div>
+    <div class="theme-card gold">
+      <div class="theme-label">▸ 요지 (Main Idea)</div>
+      <div class="theme-content">상업화된 야생동물 이미지는 감정적 반응을 유도해 기부나 관광 예약을 촉진할 뿐, 인간-동물 관계의 구조적 불평등이나 생태적 연결성에 대한 비판적 사고를 가로막는다. 이에 대응해 일부는 시각적 재현이 우리의 인식을 어떻게 형성하는지 의문을 제기하기 시작했고, 감정적 호소와 생태·정치적 맥락을 함께 다루는 다큐멘터리처럼 '철저한 관점'을 제시함으로써 환경 문제의 근본 원인을 직시하도록 이끌 수 있다.</div>
+    </div>
+    <div class="theme-card dark">
+      <div class="theme-label">▸ 구조 흐름 (Structure)</div>
+      <ol class="flow-list">
+        <li><span class="flow-stage">문제 제기 (Problem)</span>상업화된 야생동물 이미지는 감정적 반응을 끌어내 기부·관광 예약 등 상업적 목적에 활용된다.</li>
+        <li><span class="flow-stage">한계 (Limitation)</span>그러한 이미지는 인간-동물 관계를 형성하는 권력 불균형·불평등에 대한 비판적 사고를 끌어내지 못하며, 가상 공간은 생태적 연결성을 간과하게 만든다.</li>
+        <li><span class="flow-stage">대안 (Counter-Perspective)</span>'학습된 비가시성'에 대응해, 시각적 재현이 우리의 인식을 형성하는 방식에 의문을 제기하는 새로운 관점이 등장 — 종 간 일상적 상호작용을 가시화하고 무지에서 깨어나도록 함.</li>
+        <li><span class="flow-stage">사례 및 결론 (Example & Conclusion)</span>구조 동물의 따뜻한 이야기와 함께 서식지 손실·불법 거래 같은 생태정치적 맥락을 검토하는 다큐멘터리가 그 사례 — 감정적 호소를 광범위한 문제와 연결시켜 환경 피해의 근본 원인을 보게 함.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ⑥ 배경지식 -->
+<div class="panel" id="t6">
+  <h2 class="section-title"><span class="icon">⑥</span>지문의 배경지식 (Background Knowledge)</h2>
+
+  <div class="bg-card">
+    <div class="bg-title">"Charismatic Megafauna" — 카리스마 거대동물 마케팅</div>
+    <div class="bg-body">
+      환경운동·동물 보호 단체가 모금이나 캠페인에 활용하는 핵심 마케팅 개념. 사자, 호랑이, 코끼리, 판다, 북극곰처럼 크고 매력적이며 인간이 정서적으로 동일시하기 쉬운 동물을 'Charismatic Megafauna(카리스마 거대동물)'라 부른다. WWF의 판다 로고가 대표적이며, 이 전략은 기부금 모금·정책 영향력에서는 효과적이지만, 곤충·균류·해양 미생물 같은 '비카리스마 종'은 생태적으로 더 중요한데도 보호 우선순위에서 밀린다는 비판을 받는다. 본문 1번 문장의 'attractive wildlife'와 'appealing physical traits'는 바로 이 개념을 가리킨다.
+    </div>
+  </div>
+
+  <div class="bg-card">
+    <div class="bg-title">"Slow Violence"와 학습된 비가시성 (Learned Invisibility)</div>
+    <div class="bg-body">
+      미국 환경문학자 Rob Nixon이 2011년 저서 <em>Slow Violence and the Environmentalism of the Poor</em>에서 제시한 개념. 빠르고 극적인 폭력과 달리, 환경 파괴·기후변화·서식지 손실 같은 'slow violence(느린 폭력)'는 시간에 걸쳐 점진적으로 진행되어 미디어와 대중의 시야에서 '보이지 않게(invisible)' 된다. 본문의 'learned invisibility(학습된 비가시성)'는 이런 흐름과 맞닿아 있는 개념으로, 우리가 무엇을 보고 무엇을 보지 못할지가 '학습'된다는 의미. 미디어 재현(visual representation)이 이 학습을 형성하는 핵심 메커니즘이다.
+    </div>
+  </div>
+
+  <div class="bg-card">
+    <div class="bg-title">Multispecies Studies — 다종(多種) 인문학</div>
+    <div class="bg-body">
+      2010년대 이후 등장한 학제간 연구 분야로, 인간과 비인간 동물·식물·미생물이 함께 만드는 생태적·정치적 관계를 연구한다. Donna Haraway('Species Companions'), Anna Tsing(<em>The Mushroom at the End of the World</em>), Eduardo Kohn(<em>How Forests Think</em>) 등이 대표 학자. 본문의 "shared ecologies between all living beings"와 "everyday interactions between species"는 이 학파의 핵심 표현. 동물을 단순한 보호·관광 대상이 아닌 '함께 생태계를 형성하는 행위자(actor)'로 보는 관점이다.
+    </div>
+  </div>
+
+  <div class="bg-card">
+    <div class="bg-title">"Voluntourism" — 자선 관광의 윤리 논쟁</div>
+    <div class="bg-body">
+      'Volunteer + Tourism'의 합성어로, 사파리·동물 보호소·고래 관찰 투어 등 자선·생태를 명분으로 한 관광 산업을 가리킨다. 본문의 'safari vacation bookings'와 'charitable donations'가 결합된 형태. 비판자들은 이 산업이 △현지 주민을 배제하고 △동물 행동을 인위적으로 변형시키며 △서구 관광객의 죄책감 해소 도구로 기능한다고 지적한다. Kenya·Tanzania의 사파리, Thailand의 코끼리 보호소 사례가 대표적. 본문의 "power imbalances, exclusions, and inequalities"는 이런 구조적 문제를 직접 가리킨다.
+    </div>
+  </div>
+
+  <div class="bg-card">
+    <div class="bg-title">"Heartwarming Content" 다큐멘터리의 진화</div>
+    <div class="bg-body">
+      넷플릭스 <em>Our Planet</em>(2019), <em>Tiger</em>(2024) 시리즈, BBC <em>Planet Earth III</em>(2023)는 본문이 말하는 '철저한 관점(thorough perspective)'의 대표적 사례. 이전 세대의 야생동물 다큐멘터리(예: <em>March of the Penguins</em> 2005)는 동물의 감동적 서사에만 집중했다면, 최근 작품은 같은 화면에서 서식지 파괴·플라스틱 오염·밀렵 등 정치·경제적 맥락을 직접 다룬다. 본문은 이런 흐름을 '감정적 호소(emotional appeal)와 광범위한 문제(broader issues)의 연결'로 평가한다. 수능·내신에서 'thorough', 'overall causes', 'broader issues' 같은 어휘는 '단편적 vs 종합적' 대비 구조의 핵심 키워드로 출제된다.
+    </div>
+  </div>
+</div>
+
+<!-- ⑦ 변형문제 -->
+<div class="panel" id="t7">
+  <h2 class="section-title"><span class="icon">⑦</span>변형문제 (Practice Questions)</h2>
+
+  <!-- Q1 주제 추론 -->
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-num">1</span><span class="quiz-type">주제 추론</span></div>
+    <div class="quiz-title">다음 글의 주제로 가장 적절한 것은?</div>
+    <div class="quiz-question eng">
+      Commercialized images of attractive wildlife use the appealing physical traits of animals to elicit emotional responses. Such imagery fails to encourage critical thinking regarding power imbalances and inequalities. In response, some have begun to question how visual representations shape what we notice and what we overlook, aiming to pull us out of our deep ignorance.
+    </div>
+    <ul class="choices">
+      <li class="choice" onclick="check(this, 'q1', false, '야생동물 종 다양성 자체가 본문 주제는 아님.')"><span class="num">①</span><span class="txt">야생동물 종 다양성을 보존하기 위한 과학적 노력</span></li>
+      <li class="choice" onclick="check(this, 'q1', false, '사파리 관광 경제 효과는 본문의 주제가 아니라 비판 대상의 일부임.')"><span class="num">②</span><span class="txt">사파리 관광 산업이 지역 경제에 미치는 긍정적 영향</span></li>
+      <li class="choice" onclick="check(this, 'q1', true, '상업화된 야생동물 이미지의 한계와 비판적 시각 재현을 통한 생태정치적 인식의 회복 — 본문의 핵심 흐름과 일치.')"><span class="num">③</span><span class="txt">상업화된 야생동물 이미지의 한계와 비판적 시각 재현의 필요성</span></li>
+      <li class="choice" onclick="check(this, 'q1', false, '소셜 미디어 알고리즘은 본문에 직접 언급되지 않음.')"><span class="num">④</span><span class="txt">소셜 미디어 알고리즘이 환경 인식에 미치는 영향</span></li>
+      <li class="choice" onclick="check(this, 'q1', false, '동물권 운동의 역사적 발전은 본문 주제가 아님.')"><span class="num">⑤</span><span class="txt">동물권 운동의 역사적 발전과 주요 단체 소개</span></li>
+    </ul>
+    <div class="explain" id="exp-q1"></div>
+    <button class="reset-btn" onclick="reset('q1')">↺ 다시 풀기</button>
+  </div>
+
+  <!-- Q2 빈칸 추론 -->
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-num">2</span><span class="quiz-type">빈칸 추론</span></div>
+    <div class="quiz-title">다음 글의 빈칸에 들어갈 말로 가장 적절한 것은?</div>
+    <div class="quiz-question eng">
+      A documentary that presents rescued wild animals as heartwarming content while also examining ecological and political contexts—such as habitat loss or illegal trade—illustrates how a thorough perspective can be presented. By linking emotional appeal to these broader issues, it invites viewers to consider ___________ rather than focusing solely on feel-good rescue stories.
+    </div>
+    <ul class="choices">
+      <li class="choice" onclick="check(this, 'q2', false, '본문은 개별 동물 일대기가 아니라 환경 피해의 \\'전반적 원인\\'을 다룸.')"><span class="num">①</span><span class="txt">the personal life stories of individual animals (개별 동물의 개인적 일대기)</span></li>
+      <li class="choice" onclick="check(this, 'q2', false, '경제적 가치가 본문의 핵심이 아님. 오히려 상업화에 비판적.')"><span class="num">②</span><span class="txt">the economic value of wildlife tourism (야생동물 관광의 경제적 가치)</span></li>
+      <li class="choice" onclick="check(this, 'q2', true, '본문 마지막 문장의 \"the overall causes of environmental harm\"이 바로 빈칸의 답. \\'기분 좋은 구조 이야기\\'와 대비되는 \\'환경 피해의 전반적 원인\\'.')"><span class="num">③</span><span class="txt">the overall causes of environmental harm (환경 피해의 전반적 원인)</span></li>
+      <li class="choice" onclick="check(this, 'q2', false, '카리스마 동물에만 초점은 본문이 비판하는 입장.')"><span class="num">④</span><span class="txt">the beauty of charismatic animals (카리스마 동물의 아름다움)</span></li>
+      <li class="choice" onclick="check(this, 'q2', false, '구조 단체의 자금 모금이 핵심이 아님 — 오히려 비판 대상의 일부.')"><span class="num">⑤</span><span class="txt">the fundraising success of rescue organizations (구조 단체의 모금 성공)</span></li>
+    </ul>
+    <div class="explain" id="exp-q2"></div>
+    <button class="reset-btn" onclick="reset('q2')">↺ 다시 풀기</button>
+  </div>
+
+  <!-- Q3 어법 -->
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-num">3</span><span class="quiz-type">어법 오류</span></div>
+    <div class="quiz-title">다음 글의 밑줄 친 부분 중, 어법상 틀린 것은?</div>
+    <div class="quiz-question eng">
+      Such imagery fails ① <u>to encourage</u> critical thinking. Moreover, commercialized virtual spaces ② <u>where</u> humans and animals interact cause us ③ <u>to overlook</u> the connections between all living beings. ④ <u>By link</u> emotional appeal to these broader issues, a documentary invites viewers ⑤ <u>to consider</u> the overall causes of environmental harm.
+    </div>
+    <ul class="choices">
+      <li class="choice" onclick="check(this, 'q3', false, 'fail은 to부정사 목적어를 취함. 어법상 정확.')"><span class="num">①</span><span class="txt">to encourage (어법상 정확)</span></li>
+      <li class="choice" onclick="check(this, 'q3', false, '선행사 virtual spaces(장소)를 수식하는 관계부사 where. 정확.')"><span class="num">②</span><span class="txt">where (어법상 정확)</span></li>
+      <li class="choice" onclick="check(this, 'q3', false, 'cause + O + to V 구조. to overlook 정확.')"><span class="num">③</span><span class="txt">to overlook (어법상 정확)</span></li>
+      <li class="choice" onclick="check(this, 'q3', true, '전치사 By 뒤에는 동명사가 와야 함. \\'By link\\' → \\'By linking\\'. \\'~함으로써\\'(수단·방법)의 By + V-ing 구조.')"><span class="num">④</span><span class="txt">By link → By linking (전치사 By + 동명사)</span></li>
+      <li class="choice" onclick="check(this, 'q3', false, 'invite + O + to V 구조. to consider 정확.')"><span class="num">⑤</span><span class="txt">to consider (어법상 정확)</span></li>
+    </ul>
+    <div class="explain" id="exp-q3"></div>
+    <button class="reset-btn" onclick="reset('q3')">↺ 다시 풀기</button>
+  </div>
+
+  <!-- Q4 내용 불일치 -->
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-num">4</span><span class="quiz-type">내용 불일치</span></div>
+    <div class="quiz-title">윗글의 내용과 일치하지 <strong>않는</strong> 것은?</div>
+    <ul class="choices">
+      <li class="choice" onclick="check(this, 'q4', false, '본문 1번 문장과 일치 — 자선 기부와 사파리 예약을 위해 사용.')"><span class="num">①</span><span class="txt">상업화된 야생동물 이미지는 자선 기부와 사파리 예약을 늘리기 위해 활용된다.</span></li>
+      <li class="choice" onclick="check(this, 'q4', false, '본문 2번 문장과 일치 — 권력 불균형·배제·불평등에 관한 비판적 사고를 끌어내지 못함.')"><span class="num">②</span><span class="txt">상업화된 이미지는 인간-동물 관계의 불평등에 대한 비판적 사고를 끌어내지 못한다.</span></li>
+      <li class="choice" onclick="check(this, 'q4', true, '본문 3번 문장과 정반대. 본문은 가상 공간이 \\'생명체 사이의 연결과 공유 생태를 간과하게(overlook) 만든다\\'고 함. \\'더 잘 인식하게 한다\\'는 진술은 거짓.')"><span class="num">③</span><span class="txt">상업화된 가상 공간은 인간이 모든 생명체 사이의 연결과 공유된 생태를 더 잘 인식하게 한다.</span></li>
+      <li class="choice" onclick="check(this, 'q4', false, '본문 4번 문장과 일치 — 시각적 재현이 인식과 간과를 어떻게 형성하는지 의문 제기.')"><span class="num">④</span><span class="txt">일부는 시각적 재현이 우리의 인식과 간과를 어떻게 형성하는지 의문을 제기하기 시작했다.</span></li>
+      <li class="choice" onclick="check(this, 'q4', false, '본문 6번 문장과 일치 — 구조 동물의 감동적 콘텐츠와 생태·정치적 맥락을 함께 검토.')"><span class="num">⑤</span><span class="txt">철저한 관점을 보여 주는 다큐멘터리는 구조 동물의 감동적 이야기와 생태·정치적 맥락을 함께 다룬다.</span></li>
+    </ul>
+    <div class="explain" id="exp-q4"></div>
+    <button class="reset-btn" onclick="reset('q4')">↺ 다시 풀기</button>
+  </div>
+
+  <!-- Q5 글의 순서 -->
+  <div class="quiz-block">
+    <div class="quiz-header"><span class="quiz-num">5</span><span class="quiz-type">글의 순서</span></div>
+    <div class="quiz-title">주어진 글에 이어질 글의 순서로 가장 적절한 것은?</div>
+    <div class="quiz-question eng">
+      <strong>주어진 글:</strong> Commercialized images of attractive wildlife use the appealing physical traits of animals to elicit specific human emotional responses, so as to trigger charitable donations or to increase safari vacation bookings.
+      <br><br>
+      <strong>(A)</strong> In response to the constraint on our eco-political imagination of this learned invisibility, some have begun to question how visual representations shape what we notice and what we overlook.
+      <br><br>
+      <strong>(B)</strong> Such imagery fails to encourage critical thinking regarding power imbalances, exclusions, and inequalities. Moreover, commercialized virtual spaces cause us to overlook the connections and shared ecologies between all living beings.
+      <br><br>
+      <strong>(C)</strong> A documentary that presents rescued wild animals as heartwarming content while also examining ecological and political contexts illustrates how a thorough perspective can be presented.
+    </div>
+    <ul class="choices">
+      <li class="choice" onclick="check(this, 'q5', false, '(A)의 \\'this learned invisibility\\'는 (B)에서 묘사된 \\'간과(overlook)\\' 현상을 가리키므로 (B)가 (A)보다 먼저 와야 함.')"><span class="num">①</span><span class="txt">(A) - (B) - (C)</span></li>
+      <li class="choice" onclick="check(this, 'q5', true, '주어진 글(상업화 이미지의 사용 목적) → (B) 그 한계 제시(비판적 사고 결여 + 가상 공간의 간과) → (A) 그 한계에 \\'대응하여\\' 새 관점 등장 → (C) 그 관점의 구체적 사례(다큐멘터리).')"><span class="num">②</span><span class="txt">(B) - (A) - (C)</span></li>
+      <li class="choice" onclick="check(this, 'q5', false, '(C)의 다큐멘터리 사례는 새 관점이 제시된 후에 와야 자연스러움.')"><span class="num">③</span><span class="txt">(B) - (C) - (A)</span></li>
+      <li class="choice" onclick="check(this, 'q5', false, '(C)는 \\'철저한 관점\\'의 사례 제시이므로 결론에 와야 함. 첫 단락에 올 수 없음.')"><span class="num">④</span><span class="txt">(C) - (A) - (B)</span></li>
+      <li class="choice" onclick="check(this, 'q5', false, '(C) 다큐멘터리 사례는 새 관점이 등장한 (A) 이후에 와야 함.')"><span class="num">⑤</span><span class="txt">(C) - (B) - (A)</span></li>
+    </ul>
+    <div class="explain" id="exp-q5"></div>
+    <button class="reset-btn" onclick="reset('q5')">↺ 다시 풀기</button>
+  </div>
+
+  <!-- 서술형 1 -->
+  <div class="essay-block">
+    <div class="quiz-header"><span class="quiz-num">서</span><span class="quiz-type">서술형 1 · 빈칸 요약</span></div>
+    <div class="quiz-title">다음 빈칸 (A), (B)에 들어갈 단어를 본문에서 찾아 그대로 쓰시오.</div>
+    <div class="essay-cond">[조건] 본문의 단어를 그대로 활용 / 단수형/복수형은 본문 형태 그대로 / 각 빈칸에 한 단어만 쓸 것</div>
+    <div class="quiz-question eng">
+      Commercialized wildlife imagery triggers emotional responses but fails to promote <strong>(A) ___________</strong> thinking about power imbalances, while a <strong>(B) ___________</strong> perspective links emotional appeal to broader ecological and political contexts.
+    </div>
+    <textarea class="essay-textarea" placeholder="(A) ___________&#10;(B) ___________&#10;여기에 답을 작성하세요."></textarea>
+    <button class="essay-toggle" onclick="toggleAns('e1')">▾ 모범답안 보기</button>
+    <div class="essay-answer" id="ans-e1">
+      <span class="label">▸ 모범답안</span>
+      <div class="eng">(A) <strong>critical</strong> &nbsp;&nbsp;/&nbsp;&nbsp; (B) <strong>thorough</strong></div>
+      <div class="kor">▸ 해설: (A)는 본문 2번 문장의 \"critical thinking\"에서 \"critical\"을, (B)는 본문 6번 문장 \"how a thorough perspective can be presented\"에서 \"thorough\"를 그대로 사용. 본문의 두 핵심 키워드 — '비판적 사고의 결여' vs '철저한 관점'의 대비 구조 — 를 한 문장으로 요약하는 빈칸 문제.</div>
+    </div>
+  </div>
+
+  <!-- 서술형 2 -->
+  <div class="essay-block">
+    <div class="quiz-header"><span class="quiz-num">서</span><span class="quiz-type">서술형 2 · 영작</span></div>
+    <div class="quiz-title">다음 우리말을 본문 표현을 활용하여 영어로 옮기시오.</div>
+    <div class="essay-cond">[조건] ① 'By + 동명사' 구문을 사용할 것 ② 'invite + 목적어 + to부정사' 구조를 사용할 것 ③ 'rather than + 동명사' 구문을 사용할 것 ④ 'overall causes', 'feel-good' 표현을 모두 포함할 것 ⑤ 30단어 내외의 완전한 영어 문장으로 작성</div>
+    <div class="quiz-question">
+      ▸ <strong>우리말:</strong> 감정적 호소를 더 광범위한 문제와 연결함으로써, 그것은 시청자들에게 단순히 기분 좋은 구조 이야기에만 초점을 맞추기보다는 환경 피해의 전반적 원인들을 고려하도록 권한다.
+    </div>
+    <textarea class="essay-textarea" placeholder="여기에 영문 답안을 작성하세요. (30단어 내외)"></textarea>
+    <button class="essay-toggle" onclick="toggleAns('e2')">▾ 모범답안 보기</button>
+    <div class="essay-answer" id="ans-e2">
+      <span class="label">▸ 모범답안</span>
+      <div class="eng">By linking emotional appeal to these broader issues, it invites viewers to consider the overall causes of environmental harm rather than focusing solely on feel-good rescue stories.</div>
+      <div class="kor">▸ 해설: 본문 마지막(7번) 문장을 그대로 활용. 핵심은 ① 'By + V-ing'(linking) — 전치사 뒤 동명사, ② 'invites viewers to consider' — invite + O + to V 5형식, ③ 'rather than focusing' — rather than 뒤에 동명사로 병렬 (앞의 to부정사 to consider와 의미상 대비). 'rather than' 뒤에는 동명사·to부정사 모두 가능하나, 의미상 'consider' vs 'focus'의 비교가 자연스럽게 동명사로 연결됨.</div>
+    </div>
+  </div>
+
+</div>
+</div><!-- /#p1 -->
+
+
+</div>
+
+<div class="footer">
+  <div class="gold">EDUCARE · 에듀케레 영수학원</div>
+  <div>경남 양산시 물금읍 · 055.363.8010 · 천일문 독해 Master E-162</div>
+</div>
+</main>
+</div>
+
+<script>
+function showPassage(id, el) {
+  var lis = document.querySelectorAll('.passage-list li');
+  for (var i = 0; i < lis.length; i++) lis[i].classList.remove('active');
+  el.classList.add('active');
+}
+
+function showTab(tabId, el) {
+  var tabs = document.querySelectorAll('.tab');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  el.classList.add('active');
+  var panels = document.querySelectorAll('.panel');
+  for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
+  document.getElementById(tabId).classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function check(el, qid, isCorrect, explanation) {
+  var parent = el.parentElement;
+  if (parent.getAttribute('data-done') === '1') return;
+  var choices = parent.querySelectorAll('.choice');
+
+  if (isCorrect) {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    for (var i = 0; i < choices.length; i++) {
+      var oc = choices[i].getAttribute('onclick') || '';
+      if (oc.indexOf("'" + qid + "', true") !== -1) {
+        choices[i].classList.add('correct');
+      }
+    }
+  }
+  var exp = document.getElementById('exp-' + qid);
+  exp.innerHTML = (isCorrect ? '<b>✓ 정답입니다.</b> ' : '<b>✗ 오답입니다.</b> ') + explanation;
+  exp.classList.add('show');
+  parent.setAttribute('data-done', '1');
+}
+
+function reset(qid) {
+  var exp = document.getElementById('exp-' + qid);
+  exp.classList.remove('show');
+  exp.innerHTML = '';
+  var blocks = document.querySelectorAll('.quiz-block');
+  for (var i = 0; i < blocks.length; i++) {
+    if (blocks[i].querySelector('#exp-' + qid)) {
+      var choices = blocks[i].querySelectorAll('.choice');
+      for (var j = 0; j < choices.length; j++) {
+        choices[j].classList.remove('correct');
+        choices[j].classList.remove('wrong');
+      }
+      var ul = blocks[i].querySelector('.choices');
+      if (ul) ul.removeAttribute('data-done');
+    }
+  }
+}
+
+function toggleAns(eid) {
+  var ans = document.getElementById('ans-' + eid);
+  ans.classList.toggle('show');
+}
+</script>
+</body>
+</html>
+
